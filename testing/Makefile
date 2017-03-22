@@ -1,12 +1,12 @@
 BLASX_DIR = ..
 include ../Makefile.internal
 LIB = -L$(BLASX_DIR)/lib -lblasx $(LIBGPUBLAS)
-INC = -I../include -I/opt/local/include
+INC = -I../include -I/usr/local/cuda/include
 #LIB = -L/opt/local/lib -lopenblas
 #LIB = -L/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Versions/Current -lBLAS
 CPLUS=gcc
 
-DSRC :=	gemm
+DSRC :=	gemm gemm2
 	
 ALLSRC = $(DSRC:%=%.c)
 ALLOBJ = $(ALLSRC:.c=.o)

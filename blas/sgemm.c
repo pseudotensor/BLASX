@@ -59,7 +59,7 @@ void cblas_sgemm(const enum CBLAS_ORDER Order,
     int type = 0; //1:cpu 2:cublasxt 3:blasx
     if (M <= 0 || N <= 0 || K <= 0) type = 1;
     if (type == 0 && (M > 1000 || N > 1000 || K > 1000)) type = 3;
-    else                                                 type = 1;
+    else                                                 type = 3;
     //Blasx_Debug_Output("type after dispatcher:%d\n",type);
     /*-------------------*/
     

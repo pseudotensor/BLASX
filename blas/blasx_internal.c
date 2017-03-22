@@ -12,7 +12,7 @@ double get_cur_time() {
     return cur_time;
 }
 
-inline void Blasx_Debug_Output(const char *fmt, ...)
+void Blasx_Debug_Output(const char *fmt, ...)
 {
 #if defined BLASX_DEBUG
     fprintf(stderr,"BlasX Debug Info--->  ");
@@ -100,7 +100,7 @@ void blasx_init(const blasx_operation_t t){
 }
 
 /*----input format transformation among blas, cublas, cublasXt------*/
-inline int CBLasTransToCuBlasTrans(enum CBLAS_TRANSPOSE transa, cublasOperation_t *t){
+int CBLasTransToCuBlasTrans(enum CBLAS_TRANSPOSE transa, cublasOperation_t *t){
     switch (transa) {
         case CblasConjTrans: *t=CUBLAS_OP_C; return 0;
         case CblasTrans: *t=CUBLAS_OP_T; return 0;
@@ -109,7 +109,7 @@ inline int CBLasTransToCuBlasTrans(enum CBLAS_TRANSPOSE transa, cublasOperation_
     }
 }
 
-inline int CBlasSideToCuBlasSide(enum CBLAS_SIDE side,cublasSideMode_t *t){
+int CBlasSideToCuBlasSide(enum CBLAS_SIDE side,cublasSideMode_t *t){
     switch (side) {
         case CblasLeft: *t=CUBLAS_SIDE_LEFT; return 0;
         case CblasRight: *t=CUBLAS_SIDE_RIGHT; return 0;
@@ -117,7 +117,7 @@ inline int CBlasSideToCuBlasSide(enum CBLAS_SIDE side,cublasSideMode_t *t){
     }
 }
 
-inline int CBlasDiagModeToCuBlasDiagMode(enum CBLAS_DIAG diag, cublasDiagType_t *t){
+int CBlasDiagModeToCuBlasDiagMode(enum CBLAS_DIAG diag, cublasDiagType_t *t){
     switch (diag) {
         case CblasNonUnit: *t=CUBLAS_DIAG_NON_UNIT; return 0;
         case CblasUnit: *t=CUBLAS_DIAG_UNIT; return 0;
@@ -125,7 +125,7 @@ inline int CBlasDiagModeToCuBlasDiagMode(enum CBLAS_DIAG diag, cublasDiagType_t 
     }
 }
 
-inline int CBlasFilledModeToCuBlasFilledMode(enum CBLAS_UPLO uplo, cublasFillMode_t *t){
+int CBlasFilledModeToCuBlasFilledMode(enum CBLAS_UPLO uplo, cublasFillMode_t *t){
     switch (uplo) {
         case CblasUpper: *t=CUBLAS_FILL_MODE_UPPER; return 0;
         case CblasLower: *t=CUBLAS_FILL_MODE_LOWER; return 0;
@@ -133,7 +133,7 @@ inline int CBlasFilledModeToCuBlasFilledMode(enum CBLAS_UPLO uplo, cublasFillMod
     }
 }
 
-inline int F77UploToCBlasUplo(char *type, enum CBLAS_UPLO *uplo) {
+int F77UploToCBlasUplo(char *type, enum CBLAS_UPLO *uplo) {
     if(*type == 'U'|| *type == 'u') {
         *uplo=CblasUpper;
         return 0;
@@ -145,7 +145,7 @@ inline int F77UploToCBlasUplo(char *type, enum CBLAS_UPLO *uplo) {
     }
 }
 
-inline int F77SideToCBlasSide(char *type, enum CBLAS_SIDE *side) {
+int F77SideToCBlasSide(char *type, enum CBLAS_SIDE *side) {
     if(*type == 'R'|| *type == 'r'){
         *side=CblasRight;
         return 0;
@@ -158,7 +158,7 @@ inline int F77SideToCBlasSide(char *type, enum CBLAS_SIDE *side) {
     }
 }
 
-inline int F77TransToCBLASTrans(char *type, enum CBLAS_TRANSPOSE *trans) {
+int F77TransToCBLASTrans(char *type, enum CBLAS_TRANSPOSE *trans) {
     if(*type == 'N'|| *type == 'n'){
         *trans=CblasNoTrans;
         return 0;
@@ -173,7 +173,7 @@ inline int F77TransToCBLASTrans(char *type, enum CBLAS_TRANSPOSE *trans) {
     }
 }
 
-inline int F77DiagToCBLASDiag(char *type, enum CBLAS_DIAG *diag) {
+int F77DiagToCBLASDiag(char *type, enum CBLAS_DIAG *diag) {
     if(*type == 'N'|| *type == 'n') {
         *diag=CblasNonUnit;
         return 0;

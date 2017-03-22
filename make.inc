@@ -9,12 +9,13 @@ ARCH      = ar
 ARCHFLAGS = cr
 RANLIB    = ranlib
 
-CFLAGS    =
+CFLAGS    = -O3
 
 # Blas Library
-LIBCPUBLAS = "/opt/local/lib/libopenblas.dylib"
+#LIBCPUBLAS = -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread
+LIBCPUBLAS = "/usr/lib/libopenblas.so"
 #LIBCPUBLAS = "/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Versions/Current/libBLAS.dylib"
-LIBGPUBLAS = -L/usr/local/cuda/lib -lcudart -lcublas -lcuda
+LIBGPUBLAS = -L/usr/local/cuda/lib64 -lcudart -lcublas -lcuda
 LIBBLAS   = $(LIBGPUBLAS)
 
 #BLAS Include
